@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h2 {
+    text-align: center;
+}
+
+.produk {
+    float: left;
+    margin: 5px;
+    text-align: center;
+}
+
+.produk img {
+    width: 150px;
+    height: 150px;
+}
+
+form {
+    margin-top: 10px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}

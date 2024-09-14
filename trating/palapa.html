@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Bintang</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.js"></script>
+    <style>
+        .star {
+            cursor: pointer;
+            color: gray;
+        }
+        .star:hover,
+        .star.hovered,
+        .star.selected {
+            color: gold;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+    <div class="flex flex-col items-center space-y-4">
+        <div class="flex space-x-1" id="rating">
+            <svg class="w-10 h-10 star" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.318 4.062h4.27c.969 0 1.371 1.24.588 1.81l-3.452 2.502 1.318 4.062c.3.921-.755 1.688-1.54 1.117L10 13.011l-3.453 2.502c-.784.57-1.839-.196-1.54-1.117l1.318-4.062-3.451-2.502c-.783-.57-.38-1.81.588-1.81h4.27L9.049 2.927z"></path></svg>
+            <svg class="w-10 h-10 star" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.318 4.062h4.27c.969 0 1.371 1.24.588 1.81l-3.452 2.502 1.318 4.062c.3.921-.755 1.688-1.54 1.117L10 13.011l-3.453 2.502c-.784.57-1.839-.196-1.54-1.117l1.318-4.062-3.451-2.502c-.783-.57-.38-1.81.588-1.81h4.27L9.049 2.927z"></path></svg>
+            <svg class="w-10 h-10 star" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.318 4.062h4.27c.969 0 1.371 1.24.588 1.81l-3.452 2.502 1.318 4.062c.3.921-.755 1.688-1.54 1.117L10 13.011l-3.453 2.502c-.784.57-1.839-.196-1.54-1.117l1.318-4.062-3.451-2.502c-.783-.57-.38-1.81.588-1.81h4.27L9.049 2.927z"></path></svg>
+            <svg class="w-10 h-10 star" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.318 4.062h4.27c.969 0 1.371 1.24.588 1.81l-3.452 2.502 1.318 4.062c.3.921-.755 1.688-1.54 1.117L10 13.011l-3.453 2.502c-.784.57-1.839-.196-1.54-1.117l1.318-4.062-3.451-2.502c-.783-.57-.38-1.81.588-1.81h4.27L9.049 2.927z"></path></svg>
+            <svg class="w-10 h-10 star" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.318 4.062h4.27c.969 0 1.371 1.24.588 1.81l-3.452 2.502 1.318 4.062c.3.921-.755 1.688-1.54 1.117L10 13.011l-3.453 2.502c-.784.57-1.839-.196-1.54-1.117l1.318-4.062-3.451-2.502c-.783-.57-.38-1.81.588-1.81h4.27L9.049 2.927z"></path></svg>
+        </div>
+        <form action="rate.php" method="POST" class="flex flex-col items-center space-y-4">
+            <input type="hidden" name="item_id" value="1" />
+            <input type="hidden" name="rating" id="rating-input" />
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Submit Rating</button>
+        </form>
+    </div>
+
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating-input');
+        let selectedRating = 0;
+
+        stars.forEach((star, index) => {
+            star.addEventListener('mouseover', () => {
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.classList.add('hovered');
+                    } else {
+                        s.classList.remove('hovered');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseout', () => {
+                stars.forEach(s => s.classList.remove('hovered'));
+            });
+
+            star.addEventListener('click', () => {
+                selectedRating = index + 1;
+                ratingInput.value = selectedRating;
+                stars.forEach((s, i) => {
+                    if (i < selectedRating) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

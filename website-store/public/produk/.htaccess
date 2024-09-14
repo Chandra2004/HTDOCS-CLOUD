@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Aturan pertama: Menghilangkan ekstensi .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Aturan kedua: Mengarahkan URL yang tidak valid ke index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
